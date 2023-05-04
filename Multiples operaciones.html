@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Taller2</title>
+</head>
+<body>
+    <h1>Crear una página web que permita ejecutar y mostar:</h1>  
+    <label><i>Selecciona una operación</i></label>
+
+    <select id="Select" class = "Select">
+        <option selected></option>
+        <option value = "1"> Transformar la hora actual en segundos </option>
+        <option value = "2"> Calcular el area de un triangulo </option>
+        <option value = "3"> Calcule la raíz de un número impar y muestre el resultado con 3 dígitos </option>
+        <option value = "4"> Ingresar una cadena de texto y mostrar la longitud de la cadena </option>
+        <option value = "5"> Concatenar los arrays: array1(Lunes a Viernes) y array2(Sabado. Domingo) </option>
+        <option value = "6"> Mostrar la versión del navegador </option>
+        <option value = "7"> Mostrar el ancho y altura de la pantalla </option>
+        <option value = "8"> imprimir la página </option>
+    </select>
+
+    <button type="button" onclick="metodo()">Mostrar</button>
+
+    <div id= "caso2" style="display : none;" class = "contenedor">
+        
+        Ingrese base <input id="base" >
+        <hr>
+        Ingrese altura <input id="altura" >
+        <hr>
+        <button id="button" onclick="CalcularArea()">Calcular area</button>
+    
+    </div>
+
+    <div id= "caso3" style="display : none;" class = "contenedor">
+
+        Ingrese número impar <input id="impar">
+        <hr>
+        <button id="button" onclick="CalcularRaízImpar()">Calcular Raíz</button>
+    
+    </div>
+
+    <div id= "caso4" style="display : none;" class = "contenedor">
+
+        Ingrese un texto <input id="texto">
+        <hr>
+        <button id="button" onclick="CalcularLongitud()">Calcular longitud</button>
+    
+    </div>
+
+    <p id = "resultado"></p>
+</body>
+</html>
+
+<script type = "text/javascript">
+//#region 
+    function metodo()
+    {
+        var i= document.getElementById("Select").value;
+        document.getElementById("resultado").innerHTML = "";
+
+        switch(parseInt(i))
+        {
+            case 1:
+            document.getElementById("caso2").style = "display: none;"
+            document.getElementById("caso3").style = "display: none;"
+            document.getElementById("caso4").style = "display: none;"
+            TransformarHora();
+            break;
+
+            case 2:
+            document.getElementById("caso2").style = "display: block;"
+            document.getElementById("caso3").style = "display: none;"
+            document.getElementById("caso4").style = "display: none;"
+            break;
+
+            case 3:
+            document.getElementById("caso3").style = "display: block;"
+            document.getElementById("caso2").style = "display: none;"
+            document.getElementById("caso4").style = "display: none;"
+            break;
+
+            case 4:
+            document.getElementById("caso4").style = "display: block;"
+            document.getElementById("caso2").style = "display: none;"
+            document.getElementById("caso3").style = "display: none;"
+            break;
+
+            case 5:
+            document.getElementById("caso2").style = "display: none;"
+            document.getElementById("caso3").style = "display: none;"
+            document.getElementById("caso4").style = "display: none;"
+            Concatenar()
+            break;
+
+            case 6:
+            document.getElementById("caso2").style = "display: none;"
+            document.getElementById("caso3").style = "display: none;"
+            document.getElementById("caso4").style = "display: none;"
+            text = ("Versión del navegador: " + navigator.appVersion);
+            document.getElementById("resultado").innerHTML= text;
+            break;
+
+            case 7:
+            document.getElementById("caso2").style = "display: none;"
+            document.getElementById("caso3").style = "display: none;"
+            document.getElementById("caso4").style = "display: none;"
+            text = "La resolución de tu pantalla es: " + screen.width + " de ancho x " + screen.height + " de alto";
+            document.getElementById("resultado").innerHTML= text;
+            break;
+
+            case 8:
+            document.getElementById("caso2").style = "display: none;"
+            document.getElementById("caso3").style = "display: none;"
+            document.getElementById("caso4").style = "display: none;"
+            window.print();
+            break;
+        }
+    }
+
+    function TransformarHora()
+    {
+        var seg = new Date();
+        seg = "La hora actual es: " + seg.getHours() + " y en segundos es: " + seg.getHours()*3600 + " seg";
+        document.getElementById("resultado").innerHTML = seg;
+    }
+
+    function CalcularArea()
+    {
+        var base = document.getElementById("base").value;  
+        var altura = document.getElementById("altura").value; 
+        var area = "El area de un triangulo es " + (base*altura)/ 2
+        document.getElementById("resultado").innerHTML = area;
+    }
+
+    function CalcularRaízImpar()
+    {
+        var impar = document.getElementById("impar").value;
+        var raíz = "La raíz cuadrada del número ingresado es " + Math.sqrt(impar).toPrecision(3);
+        document.getElementById("resultado").innerHTML = raíz;    
+    }
+
+    function Concatenar()
+    {
+        var array1 = [' Lunes', ' Martes', ' Miércoles', ' Jueves', ' Viernes'];
+        var array2 = [' Sabado', ' Domingo'];
+        var semana = array1.concat(array2);
+        document.getElementById("resultado").innerHTML = semana;
+    }
+
+    function CalcularLongitud()
+    {
+        var longitud = document.getElementById("texto").value.length;
+        text = "La longitud de la cadena es de " + longitud + " caracteres";
+        document.getElementById("resultado").innerHTML = text;
+    }
+
+//#endregion
+</script>
+
+<style>
+    body
+    {
+        background-image: url(https://eskipaper.com/images/awesome-ironman-wallpaper-1.jpg);
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    h1
+    {
+        text-align: center;
+        color: #2a1a74;
+        font-size: 40px;
+    }
+
+    label
+    {
+        text-align: left;
+        color: #0e0e0f;
+        font-size: 25px;
+    }
+
+    option
+    {
+        text-align: left;
+        color: #0e0e0f;
+        font-size: 15px;
+    }
+    
+    .Select
+    {
+        background: rgb(191, 192, 230);
+        margin-top: 137.5px;
+        padding: 5px;
+    }
+
+    .contenedor
+    {
+        background: rgb(191, 192, 230);
+        margin-top: 30px;
+        padding: 5px;    
+        width: 30%;
+        padding: 15px;
+    }
+
+    p
+    {
+        text-align: left;
+        color: #030303;
+        font-size: 20px;
+        
+        margin-top: 25px;
+    }
+
+</style>
+    
